@@ -17,3 +17,14 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+/**
+ * Need Auth
+ */
+Route::group(['middleware' => 'auth'], function() {
+	Route::get('user/profile', 'UserController@showProfile');
+	Route::patch('user/profile', 'UserController@updateProfile');
+});
+
+

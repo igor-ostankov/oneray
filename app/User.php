@@ -6,6 +6,10 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+/**
+ * App\User
+ *
+ */
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword;
@@ -30,5 +34,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+
+	/**
+	 * Returns Full Username
+	 *
+	 * @return mixed|string
+	 */
+	public function getName() {
+		$fullName =  $this->first_name . ' ' . $this->last_name;
+		return !empty($fullName) ? $fullName : $this->email;
+	}
 
 }

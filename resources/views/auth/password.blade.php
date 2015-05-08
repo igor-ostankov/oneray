@@ -2,7 +2,7 @@
 
 @section('layout', 'login')
 
-@section('content')
+@section('body')
 <div class="tbl main-container">
     <div class="tbl-cell tbl-cell-middle">
         <div class="container-fluid">
