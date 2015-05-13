@@ -37,6 +37,15 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 
 	/**
+	 * Workspaces that user registered at
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function workspaces() {
+		return $this->belongsToMany('App\Workspace');
+	}
+
+	/**
 	 * Returns Full Username
 	 *
 	 * @return mixed|string

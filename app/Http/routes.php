@@ -25,6 +25,8 @@ Route::controllers([
 Route::group(['middleware' => 'auth'], function() {
 	Route::get('user/profile', 'UserController@showProfile');
 	Route::patch('user/profile', 'UserController@updateProfile');
+
+	Route::resource('workspace', 'WorkspaceController');
 });
 
 
