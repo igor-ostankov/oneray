@@ -15,7 +15,8 @@ class CreateWorkspacesTable extends Migration {
 		Schema::create('workspaces', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name')->unique();
+			$table->string('name');
+			$table->string('domain_prefix')->unique();
 			$table->string('domain');
 			$table->timestamps();
 		});

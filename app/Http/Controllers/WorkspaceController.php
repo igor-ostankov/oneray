@@ -7,14 +7,15 @@ use Illuminate\Http\Request;
 
 class WorkspaceController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
+	public function signIn(Request $request)
 	{
-		//
+		if($request->method() == 'POST') {
+			$this->validate($request, [
+				'workspace' => 'alpha_num|exists:workspaces,domain_prefix'
+			]);
+			return redirect()->route('workspace.home', ['workspace' => $request->input('workspace')]);
+		}
+		return view('workspace.signin');
 	}
 
 	/**

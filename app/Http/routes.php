@@ -11,22 +11,29 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+/**
+ * Workspaces
+ */
+Route::group(['domain' => '{workspace}.'.env('APP_DOMAIN')], function()
+{
+	Route::get('/', ['as' => 'workspace.home', 'uses' => 'HomeController@index'] );
+	Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
+	/**
+	 * Need Auth
+	 */
+	Route::group(['middleware' => 'auth'], function() {
+		Route::get('user/profile', 'UserController@showProfile');
+		Route::patch('user/profile', 'UserController@updateProfile');
+	});
+});
 
 /**
- * Need Auth
+ * Root Domain
  */
-Route::group(['middleware' => 'auth'], function() {
-	Route::get('user/profile', 'UserController@showProfile');
-	Route::patch('user/profile', 'UserController@updateProfile');
-
-	Route::resource('workspace', 'WorkspaceController');
-});
+Route::match(['get', 'post'], '/', 'WorkspaceController@signIn');
 
 
