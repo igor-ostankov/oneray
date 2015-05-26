@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
-                    <h3>Регистрация в OneRay</h3>
+                    <h3>Регистрация в {{ $workspace->domain_prefix.'.'.env('APP_DOMAIN') }}</h3>
                     <br/>
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+                    <form class="form-horizontal" role="form" method="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
@@ -30,10 +30,6 @@
 
                         <div class="form-group">
                             <input type="text" placeholder="Фамилия" class="form-control" name="last_name" value="{{ old('last_name') }}">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="email" placeholder="E-mail" class="form-control" name="email" value="{{ old('email') }}">
                         </div>
 
                         <div class="form-group">

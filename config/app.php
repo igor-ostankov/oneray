@@ -140,6 +140,7 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
+		'Barryvdh\Debugbar\ServiceProvider',
 		'App\Providers\AppServiceProvider',
 		'App\Providers\BusServiceProvider',
 		'App\Providers\ConfigServiceProvider',
@@ -196,7 +197,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Form'		=> 'Illuminate\Html\FormFacade',
 		'Html'		=> 'Illuminate\Html\HtmlFacade',
-
+		'Debugbar'  => 'Barryvdh\Debugbar\Facade',
 	],
 
 ];

@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Workspace;
 use Auth;
 
 class HomeController extends Controller {
@@ -30,11 +31,10 @@ class HomeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Workspace $workspace)
 	{
-		$userWorkspaces = Auth::user()->workspaces;
 		return view('home', array(
-			'workspaces' => $userWorkspaces
+			'workspaces' => []
 		));
 	}
 

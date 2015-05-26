@@ -24,7 +24,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/user/profile') }}">Настройки профиля</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ url('/auth/logout') }}">Выход</a></li>
+                            <li><a href="{{ url('/logout') }}">Выход</a></li>
                         </ul>
                     </li>
                 </ul>

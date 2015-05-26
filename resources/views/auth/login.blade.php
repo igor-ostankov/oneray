@@ -8,11 +8,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 text-center">
-                    <h3>Авторизация в {{ $workspace }}.{{ env('APP_DOMAIN') }}</h3>
+                    <h3>Авторизация в {{ $workspace->domain_prefix.'.'.env('APP_DOMAIN') }}</h3>
                     <br>
                     @include('partials.formerror')
 
-                    <form role="form" method="POST" action="{{ url('/auth/login') }}">
+                    <form role="form" method="POST" action="{{ url('/login') }}">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
@@ -37,7 +37,9 @@
 
                     </form>
                     <hr/>
-                    <div>Нет аккаунта - <a class="text-primary" href="{{ url('/auth/register') }}">Зарегистрируйтесь</a></div>
+                    @if (!empty($workspace->domain))
+                        <div>Есть аккаунт в домене <b>{{$workspace->domain}}</b>? <a class="text-primary" href="{{ url('/register') }}">Зарегистрируйтесь!</a></div>
+                    @endif
                     <div>Не получается войти - <a class="text-success" href="{{ url('/password/email') }}">Восстановите пароль</a></div>
                 </div>
             </div>
