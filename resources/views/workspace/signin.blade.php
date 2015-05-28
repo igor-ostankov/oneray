@@ -25,6 +25,10 @@
                     </div>
 
                     {!! Form::close() !!}
+
+                    <br>
+                    <hr>
+                    <a href="{{ url('create') }}">Создать Workspace</a>
                 </div>
             </div>
         </div>

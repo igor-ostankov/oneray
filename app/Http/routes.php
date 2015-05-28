@@ -44,4 +44,7 @@ Route::group(['domain' => '{workspace}.'.env('APP_DOMAIN')], function()
  */
 Route::match(['get', 'post'], '/', 'WorkspaceController@signIn');
 
+Route::match(['get', 'post'], 'create', 'WorkspaceController@createToken');
+Route::get('create/email', 'WorkspaceController@createMailSent');
+Route::match(['get', 'post'], 'create/{token}', 'WorkspaceController@create');
 

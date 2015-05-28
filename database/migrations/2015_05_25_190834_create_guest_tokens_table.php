@@ -16,6 +16,7 @@ class CreateGuestTokensTable extends Migration {
 		{
 			$table->string('email')->index();
 			$table->integer('workspace_id');
+			$table->string('workspace_prefix');
 			$table->string('token')->index();
 			$table->timestamp('created_at');
 		});

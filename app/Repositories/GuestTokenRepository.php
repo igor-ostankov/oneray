@@ -96,7 +96,13 @@ class GuestTokenRepository {
 	 */
 	protected function getPayload($email, $token)
 	{
-		return ['email' => $email, 'workspace_id' => $this->workspace->id, 'token' => $token, 'created_at' => new Carbon];
+		return [
+			'email' => $email,
+			'workspace_id' => $this->workspace->id,
+			'workspace_prefix' => $this->workspace->domain_prefix,
+			'token' => $token,
+			'created_at' => new Carbon
+		];
 	}
 
 	/**
@@ -122,6 +128,18 @@ class GuestTokenRepository {
 	{
 		$record = (array) $this->getTable()->where('token', $token)->first();
 		return $record['email'];
+	}
+
+	/**
+	 * Get an workspace prefix associated with token
+	 *
+	 * @param  string  $token
+	 * @return string
+	 */
+	public function getWorkspaceDomainPrefix($token)
+	{
+		$record = (array) $this->getTable()->where('token', $token)->first();
+		return $record['workspace_prefix'];
 	}
 
 	/**

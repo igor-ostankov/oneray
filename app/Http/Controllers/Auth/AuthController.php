@@ -90,7 +90,7 @@ class AuthController extends Controller {
 
 		$tokenRepository = new GuestTokenRepository($workspace);
 		$token = $tokenRepository->create($email);
-		Mail::send('emails.emailConfirmation', compact('token'), function($message) use ($email) {
+		Mail::send('emails.auth.emailConfirmation', compact('token'), function($message) use ($email) {
 			$message->to($email);
 		});
 		return redirect('register/email')->with('email', $email);

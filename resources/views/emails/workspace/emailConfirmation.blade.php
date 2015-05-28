@@ -1,0 +1,1 @@
+Click here to continue your registration: <a href="{{ url('/create/'.$token) }}">{{ url('/create/'.$token) }}</a>
