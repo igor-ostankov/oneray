@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use App\Workspace;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+use App;
+
 class RouteServiceProvider extends ServiceProvider {
 
 	/**
@@ -30,6 +32,7 @@ class RouteServiceProvider extends ServiceProvider {
 		$router->bind('workspace', function($value) {
 			$currentWs = Workspace::where('domain_prefix', $value)->first();
 			if($currentWs) {
+				$this->app->instance('CurrentWorkspace', $currentWs);
 				view()->share('workspace', $currentWs);
 				return $currentWs;
 			} else {

@@ -63,7 +63,7 @@ class AuthController extends Controller {
 			&& $workspace->users->contains($this->auth->getLastAttempted()))
 		{
 			$this->auth->login($this->auth->getLastAttempted(), $request->has('remember'));
-			return redirect()->intended($this->redirectPath());
+			return redirect($this->redirectPath());
 		}
 
 		return redirect($this->loginPath())

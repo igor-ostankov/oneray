@@ -2,6 +2,12 @@
 
 use Illuminate\Support\ServiceProvider;
 
+use App;
+use Auth;
+use Config;
+use App\Services\Guard;
+use Illuminate\Auth\EloquentUserProvider;
+
 class AppServiceProvider extends ServiceProvider {
 
 	/**
@@ -11,7 +17,11 @@ class AppServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		Auth::extend('workspace', function() {
+			$model = Config::get('auth.model');
+			$provider = new EloquentUserProvider(App::make('hash'), $model);
+			return new Guard($provider, App::make('session.store'));
+		});
 	}
 
 	/**
