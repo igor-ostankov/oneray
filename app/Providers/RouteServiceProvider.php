@@ -33,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider {
 			$currentWs = Workspace::where('domain_prefix', $value)->first();
 			if($currentWs) {
 				$this->app->instance('CurrentWorkspace', $currentWs);
+				$this->app->make('DBConnection');
 				view()->share('workspace', $currentWs);
 				return $currentWs;
 			} else {

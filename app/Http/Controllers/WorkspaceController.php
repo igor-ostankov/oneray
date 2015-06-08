@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Repositories\GuestTokenRepository;
 
+use App;
 use App\Workspace;
 use App\User;
 use Illuminate\Http\Request;
@@ -91,6 +92,8 @@ class WorkspaceController extends Controller {
 			$workspace->save();
 
 			$user->workspaces()->attach($workspace->id);
+
+			App::instance('CurrentWorkspace', $workspace);
 			Auth::login($user);
 			$tokenRepository->delete($token);
 			return redirect()->route('workspace.home', [
