@@ -6,7 +6,7 @@
     <div class="tbl main-container">
         <div class="tbl-cell tbl-cell-middle">
             <div class="container-fluid">
-                <div class="text-center center-block" style="width: 280px;">
+                <div class="text-center center-block" style="width: 340px;">
                     @include('partials.formerror')
                     <h3>Авторизация в OneRay</h3>
                     <br>
