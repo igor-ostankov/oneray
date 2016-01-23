@@ -2,6 +2,7 @@
 
 use App\Workspace;
 use Auth;
+use JavaScript;
 
 class HomeController extends Controller {
 
@@ -33,9 +34,15 @@ class HomeController extends Controller {
 	 */
 	public function index(Workspace $workspace)
 	{
-		return view('home', array(
-			'workspaces' => []
-		));
+		JavaScript::put([
+			'APPCONFIG' => [
+				'user' => [
+					'name' => Auth::user()->getName()
+				]
+			]
+		]);
+
+		return view('app');
 	}
 
 }

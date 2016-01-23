@@ -12,5 +12,9 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.less('app.less');
+    //mix.less('app.less');
+	mix.browserify('app.js', null, './resources/assets/js/');
+	mix.browserSync({
+		proxy: 'test.oneray.dev'
+	});
 });

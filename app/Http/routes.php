@@ -16,7 +16,6 @@
  */
 Route::group(['domain' => '{workspace}.'.env('APP_DOMAIN')], function()
 {
-	Route::get('/', ['as' => 'workspace.home', 'uses' => 'HomeController@index'] );
 	Route::get('login', 'Auth\AuthController@getLogin');
 	Route::post('login', 'Auth\AuthController@postLogin');
 	Route::get('logout', 'Auth\AuthController@getLogout');
@@ -29,6 +28,7 @@ Route::group(['domain' => '{workspace}.'.env('APP_DOMAIN')], function()
 	Route::controllers([
 		'password' => 'Auth\PasswordController',
 	]);
+	Route::get('/{page?}', ['as' => 'workspace.home', 'uses' => 'HomeController@index'] )->where(['page' => '.*']);
 
 	/**
 	 * Need Auth

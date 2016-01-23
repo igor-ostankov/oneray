@@ -1,22 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" class="@yield('layout')">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+@extends('main')
 
-	<link href="{{ asset('/css/layout.css') }}" rel="stylesheet">
-	<link href="https://bootswatch.com/flatly/bootstrap.min.css" rel="stylesheet">
+@section('layout', 'app')
 
-	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-</head>
-<body>
-	@yield('body')
+@section('body')
+    <div class="container messages">
+        @if ($errors->any())
+            <ul class="list-unstyled alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
-	<!-- Scripts -->
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</body>
-</html>
+        @if (Session::has('flash_msg'))
+            <div class="alert alert-{{ Session::get('flash_type', 'info') }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span>{{ Session::get('flash_msg') }}</span>
+            </div>
+        @endif
+    </div>
+
+    <div id="app"></div>
+	@include('partials.jsvars')
+    <script src="/js/app.js"></script>
+@endsection
